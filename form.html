@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Registration From</title>
+</head>
+<body class="form">
+    
+    <form action="http://localhost/insert.php" method="POST">
+
+        <label for="patient_id">Patient ID</label><input type="text" name="patient_id" id="patient_id"><br>
+        <span class="error-message" id="patient_id_error"></span>
+
+        <label for="first_name">First Name</label><input type="text" name="first_name" id="first_name" > <br>
+        <span class="error-message" id="first_name_error"></span>
+
+        <label for="middle_name">Middle Name</label><input type="text" name="middle_name" id="middle_name" > <br>
+        <span class="error-message" id="middle_name_error"></span>
+        
+        <label for="surname">Surname</label> <input type="text" name="surname" id="surname" > <br>
+        <span class="error-message" id="surname_error"></span>
+
+        <label for="date_of_birth">Date of birth</label> <input type="date" name="date_of_birth" id="date_of_birth" > <br>
+
+        <label for="gender">Gender</label> <select id="gender" name="gender" >
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="bisexual">Bisexual</option>
+          </select> <br>
+          
+        <label for="county">County</label>
+        <select id="county" name="county" >
+        <option value="Baringo">Baringo</option>
+        <option value="Bomet">Bomet</option>
+        <option value="Bungoma">Bungoma</option>
+        <option value="Busia">Busia</option>
+        <option value="Elgeyo Marakwet">Elgeyo Marakwet</option>
+        <option value="Embu">Embu</option>
+        <option value="Garissa">Garissa</option>
+        <option value="Homa Bay">Homa Bay</option>
+        <option value="Isiolo">Isiolo</option>
+        <option value="Kajiado">Kajiado</option>
+        <option value="Kakamega">Kakamega</option>
+        <option value="Kericho">Kericho</option>
+        <option value="Kiambu">Kiambu</option>
+        <option value="Kilifi">Kilifi</option>
+        <option value="Kirinyaga">Kirinyaga</option>
+        <option value="Kisii">Kisii</option>
+        <option value="Kisumu">Kisumu</option>
+        <option value="Kitui">Kitui</option>
+        <option value="Kwale">Kwale</option>
+        <option value="Laikipia">Laikipia</option>
+        <option value="Lamu">Lamu</option>
+        <option value="Machakos">Machakos</option>
+        <option value="Makueni">Makueni</option>
+        <option value="Mandera">Mandera</option>
+        <option value="Marsabit">Marsabit</option>
+        <option value="Meru">Meru</option>
+        <option value="Migori">Migori</option>
+        <option value="Mombasa">Mombasa</option>
+        <option value="Murang'a">Murang'a</option>
+        <option value="Nairobi">Nairobi</option>
+        <option value="Nakuru">Nakuru</option>
+        <option value="Nandi">Nandi</option>
+        <option value="Narok">Narok</option>
+        <option value="Nyamira">Nyamira</option>
+        <option value="Nyandarua">Nyandarua</option>
+        <option value="Nyeri">Nyeri</option>
+        <option value="Samburu">Samburu</option>
+        <option value="Siaya">Siaya</option>
+        <option value="Taita Taveta">Taita Taveta</option>
+        <option value="Tana River">Tana River</option>
+        <option value="Tharaka-Nithi">Tharaka-Nithi</option>
+        <option value="Trans Nzoia">Trans Nzoia</option>
+        <option value="Turkana">Turkana</option>
+        <option value="Uasin Gishu">Uasin Gishu</option>
+        <option value="Vihiga">Vihiga</option>
+        <option value="Wajir">Wajir</option>
+        <option value="West Pokot">West Pokot</option>
+        </select>
+
+        <script>
+            document.querySelector('form').addEventListener('submit', function(e) {
+                e.preventDefault(); // prevent the form from being submitted
+                validate(); // call the validation function
+                });
+
+            function validate(){
+                let validations = 0
+                let first_name_input = document.getElementById("first_name");
+                let first_name_error = document.getElementById("first_name_error");
+                if (first_name_input.value.trim() === ""){
+                    first_name_input.classList.add("error");
+                    first_name_error.textContent = "*First name is required";
+                    first_name_input.after(first_name_error)
+                }
+                else if(!isNaN((first_name_input.value))){
+                    first_name_input.classList.add("error");
+                    first_name_error.textContent = "Enter a valid first name";
+                    first_name_input.after(first_name_error)
+                }
+                else{
+                    first_name_input.classList.remove("error");
+                    first_name_error.textContent = "";
+                    validations+=1
+                }
+
+                let middle_name_input = document.getElementById("middle_name");
+                let middle_name_error = document.getElementById("middle_name_error");
+                
+                if(!isNaN(parseFloat(middle_name_input.value))){
+                    middle_name_input.classList.add("error");
+                    middle_name_error.textContent = "Enter a valid middle name";
+                    middle_name_input.after(middle_name_error)
+                }
+                else{
+                    middle_name_input.classList.remove("error");
+                    middle_name_error.textContent = "";
+                    validations+=1
+                }
+
+                let surname_input = document.getElementById("surname");
+                let surname_error = document.getElementById("surname_error");
+                if (surname_input.value.trim() === ""){
+                    surname_input.classList.add("error");
+                    surname_error.textContent = "*Surname is required";
+                    surname_input.after(surname_error)
+                }
+                else if(!isNaN(surname_input.value)){
+                    surname_input.classList.add("error");
+                    surname_error.textContent = "Enter a valid surname";
+                    surname_input.after(surname_error)
+                }
+                else{
+                    surname_input.classList.remove("error");
+                    surname_error.textContent = "";
+                    validations+=1
+                }
+
+                let patient_id_input = document.getElementById("patient_id");
+                let patient_id_error = document.getElementById("patient_id_error");
+
+                if (patient_id_input.value.trim() === ""){
+                    patient_id_input.classList.add("error");
+                    patient_id_error.textContent = "*Patient ID is required";
+                    patient_id_input.after(patient_id_error)
+                }
+                else if(isNaN(patient_id_input.value)){
+                    patient_id_input.classList.add("error");
+                    patient_id_error.textContent = "Enter a valid patient ID";
+                    patient_id_input.after(patient_id_error)
+                }
+                else{
+                    patient_id_input.classList.remove("error");
+                    patient_id_error.textContent = "";
+                    validations+=1
+                }
+
+                if(validations === 4){
+                    document.querySelector('form').submit(); // submit the form
+                }
+
+            }
+        </script>
+          
+        <button type="submit" class="submit">Submit</button>
+    </form>
+    
+</body>
+</html>
